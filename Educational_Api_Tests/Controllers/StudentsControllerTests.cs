@@ -2,8 +2,6 @@
 using Educational_Api.Models;
 using Educational_Api.Models.Context;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Educational_Api_Tests.Controllers

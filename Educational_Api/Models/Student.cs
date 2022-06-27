@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Educational_Api.Models.Enums;
+﻿using Educational_Api.Models.Enums;
 
 namespace Educational_Api.Models
 {
@@ -9,7 +8,6 @@ namespace Educational_Api.Models
 
 		public string Name { get; set; }
 
-		[Column("birth_date")]
 		public DateTime BirthDate { get; set; }
 
 		public EGenre Genre { get; set; }

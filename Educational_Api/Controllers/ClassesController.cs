@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Educational_Api.Models;
+using Educational_Api.Models.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Educational_Api.Models;
-using Educational_Api.Models.Context;
 
 namespace Educational_Api.Controllers
 {
-    [Route("[controller]")]
+	[Route("[controller]")]
     [ApiController]
     public class ClassesController : ControllerBase
     {
@@ -21,7 +16,6 @@ namespace Educational_Api.Controllers
             _context = context;
         }
 
-        // GET: api/Classes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Class>>> GetClasses()
         {
@@ -32,7 +26,6 @@ namespace Educational_Api.Controllers
             return await _context.Classes.ToListAsync();
         }
 
-        // GET: api/Classes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Class>> GetClass(int id)
         {
@@ -50,8 +43,6 @@ namespace Educational_Api.Controllers
             return @class;
         }
 
-        // PUT: api/Classes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutClass(int id, Class @class)
         {
@@ -81,8 +72,6 @@ namespace Educational_Api.Controllers
             return NoContent();
         }
 
-        // POST: api/Classes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Class>> PostClass(Class @class)
         {
@@ -96,7 +85,6 @@ namespace Educational_Api.Controllers
             return CreatedAtAction("GetClass", new { id = @class.Id }, @class);
         }
 
-        // DELETE: api/Classes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClass(int id)
         {
