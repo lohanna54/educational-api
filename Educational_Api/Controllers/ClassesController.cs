@@ -1,112 +1,84 @@
 ﻿using Educational_Api.Models;
-using Educational_Api.Models.Context;
+using Educational_Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Educational_Api.Controllers
 {
 	[Route("[controller]")]
-    [ApiController]
-    public class ClassesController : ControllerBase
-    {
-        private readonly EducationalContext _context;
+	[ApiController]
+	public class ClassesController : ControllerBase
+	{
+		private readonly IClassService _classService;
 
-        public ClassesController(EducationalContext context)
-        {
-            _context = context;
-        }
+		public ClassesController(IClassService classService)
+		{
+			_classService = classService;
+		}
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Class>>> GetClasses()
-        {
-          if (_context.Classes == null)
-          {
-              return NotFound();
-          }
-            return await _context.Classes.ToListAsync();
-        }
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<Class>>> GetClasses()
+		{
+			var result = await _classService.GetClasses();
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Class>> GetClass(int id)
-        {
-          if (_context.Classes == null)
-          {
-              return NotFound();
-          }
-            var @class = await _context.Classes.FindAsync(id);
+			if (!result.Any())
+			{
+				return NotFound();
+			}
 
-            if (@class == null)
-            {
-                return NotFound();
-            }
+			return Ok(result);
+		}
 
-            return @class;
-        }
+		[HttpGet("{id}")]
+		public async Task<ActionResult<Class>> GetClass(int id)
+		{
+			var result = await _classService.GetClassByIdAsync(id);
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutClass(int id, Class @class)
-        {
-            if (id != @class.Id)
-            {
-                return BadRequest();
-            }
+			if (result.IsSuccessful)
+			{
+				return Ok(result.Response);
+			}
 
-            _context.Entry(@class).State = EntityState.Modified;
+			return NotFound();
+		}
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClassExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+		[HttpPut("{id}")]
+		public async Task<IActionResult> UpdateClass(int id, Class @class)
+		{
+			if (id != @class.Id)
+			{
+				return BadRequest();
+			}
 
-            return NoContent();
-        }
+			var result = await _classService.UpdateClassAsync(id, @class);
 
-        [HttpPost]
-        public async Task<ActionResult<Class>> PostClass(Class @class)
-        {
-          if (_context.Classes == null)
-          {
-              return Problem("Entity set 'EducationalContext.Classes'  is null.");
-          }
-            _context.Classes.Add(@class);
-            await _context.SaveChangesAsync();
+			return StatusCode((int)result.StatusCode);
+		}
 
-            return CreatedAtAction("GetClass", new { id = @class.Id }, @class);
-        }
+		[HttpPost]
+		public async Task<ActionResult<Class>> CreateClass(Class @class)
+		{
+			var result = await _classService.CreateClassAsync(@class);
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClass(int id)
-        {
-            if (_context.Classes == null)
-            {
-                return NotFound();
-            }
-            var @class = await _context.Classes.FindAsync(id);
-            if (@class == null)
-            {
-                return NotFound();
-            }
+			if (!result.IsSuccessful)
+			{
+				return Problem(result.Response.ToString());
+			}
 
-            _context.Classes.Remove(@class);
-            await _context.SaveChangesAsync();
+			return Ok(result.Response.ToString());
+		}
 
-            return NoContent();
-        }
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteClass(int id)
+		{
+			var result = await _classService.DeleteClassAsync(id);
 
-        private bool ClassExists(int id)
-        {
-            return (_context.Classes?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-    }
+			if (result.IsSuccessful)
+			{
+				return NoContent();
+			}
+
+			return new ObjectResult(result.Response.ToString())
+			{ StatusCode = (int)result.StatusCode };
+		}
+	}
 }

@@ -1,112 +1,85 @@
 ﻿using Educational_Api.Models;
-using Educational_Api.Models.Context;
+using Educational_Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Educational_Api.Controllers
 {
 	[Route("[controller]")]
-    [ApiController]
-    public class StudentsController : ControllerBase
-    {
-        private readonly EducationalContext _context;
+	[ApiController]
+	public class StudentsController : ControllerBase
+	{
+		private readonly IStudentService _studentService;
 
-        public StudentsController(EducationalContext context)
-        {
-            _context = context;
-        }
+		public StudentsController(IStudentService studentService)
+		{
+			_studentService = studentService;
+		}
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
-        {
-          if (_context.Students == null)
-          {
-              return NotFound();
-          }
-            return await _context.Students.ToListAsync();
-        }
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
+		{
+			var result = await _studentService.GetStudents();
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(int id)
-        {
-          if (_context.Students == null)
-          {
-              return NotFound();
-          }
-            var student = await _context.Students.FindAsync(id);
+			if(!result.Any())
+			{
+				return NotFound();
+			}
 
-            if (student == null)
-            {
-                return NotFound();
-            }
+			return Ok(result);
+		}
 
-            return student;
-        }
+		[HttpGet("{id}")]
+		public async Task<ActionResult<Student>> GetStudent(int id)
+		{
+			var result = await _studentService.GetStudentById(id);
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(int id, Student student)
-        {
-            if (id != student.Id)
-            {
-                return BadRequest();
-            }
+			if (result.IsSuccessful)
+			{
+				return Ok(result.Response);
+			}
 
-            _context.Entry(student).State = EntityState.Modified;
+			return NotFound();
+		}
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+		[HttpPut("{id}")]
+		public async Task<IActionResult> UpdateStudent(int id, Student student)
+		{
+			if (id != student.Id)
+			{
+				return BadRequest();
+			}
 
-            return NoContent();
-        }
+			var result = await _studentService.UpdateStudent(id, student);
 
-        [HttpPost]
-        public async Task<ActionResult<Student>> PostStudent(Student student)
-        {
-          if (_context.Students == null)
-          {
-              return Problem("Entity set 'EducationalContext.Students'  is null.");
-          }
-            _context.Students.Add(student);
-            await _context.SaveChangesAsync();
+			return StatusCode((int)result.StatusCode);
+			
+		}
 
-            return CreatedAtAction("GetStudent", new { id = student.Id }, student);
-        }
+		[HttpPost]
+		public async Task<ActionResult> CreateStudent(Student student)
+		{
+			var result = await _studentService.CreateStudent(student);
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(int id)
-        {
-            if (_context.Students == null)
-            {
-                return NotFound();
-            }
-            var student = await _context.Students.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
+			if (!result.IsSuccessful)
+			{
+				return Problem(result.Response.ToString());
+			}
+			
+			return Ok(result.Response.ToString());
+		}
 
-            _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteStudent(int id)
+		{
+			var result = await _studentService.DeleteStudent(id);
 
-            return NoContent();
-        }
+			if (result.IsSuccessful)
+			{
+				return NoContent();
+			}
 
-        private bool StudentExists(int id)
-        {
-            return (_context.Students?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-    }
+			return new ObjectResult(result.Response.ToString())
+			{ StatusCode = (int)result.StatusCode };
+		}
+	}
 }

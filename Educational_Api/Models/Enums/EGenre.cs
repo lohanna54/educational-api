@@ -1,9 +1,14 @@
-﻿namespace Educational_Api.Models.Enums
+﻿using System.ComponentModel;
+
+namespace Educational_Api.Models.Enums
 {
 	public enum EGenre
 	{
-		Female,
-		Male,
-		Other
+		[Description("Female")]
+		F = 1,
+		[Description("Male")]
+		M,
+		[Description("Other")]
+		O
 	}
 }
