@@ -1,5 +1,5 @@
-﻿using Educational_Api.Models;
-using Educational_Api.Models.Response;
+﻿using Educational_Api.Models.Response;
+using Educational_Api.Models.UI;
 
 namespace Educational_Api.Services.Interfaces
 {

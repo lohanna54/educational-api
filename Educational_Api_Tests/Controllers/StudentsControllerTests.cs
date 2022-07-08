@@ -1,6 +1,6 @@
 ﻿using Educational_Api.Controllers;
-using Educational_Api.Models;
 using Educational_Api.Models.Context;
+using Educational_Api.Models.UI;
 using Moq;
 using Xunit;
 

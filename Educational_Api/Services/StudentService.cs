@@ -1,6 +1,6 @@
-﻿using Educational_Api.Models;
-using Educational_Api.Models.Context;
+﻿using Educational_Api.Models.Context;
 using Educational_Api.Models.Response;
+using Educational_Api.Models.UI;
 using Educational_Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

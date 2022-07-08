@@ -1,4 +1,4 @@
-﻿namespace Educational_Api.Models
+﻿namespace Educational_Api.Models.AppSettings
 {
 	public class DatabaseConfiguration
 	{

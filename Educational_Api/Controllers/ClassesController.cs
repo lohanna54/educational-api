@@ -1,4 +1,4 @@
-﻿using Educational_Api.Models;
+﻿using Educational_Api.Models.UI;
 using Educational_Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

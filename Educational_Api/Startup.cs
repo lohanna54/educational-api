@@ -1,4 +1,4 @@
-﻿using Educational_Api.Models;
+﻿using Educational_Api.Models.AppSettings;
 using Educational_Api.Models.Context;
 using Educational_Api.Services;
 using Educational_Api.Services.Interfaces;

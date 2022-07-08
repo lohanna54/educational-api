@@ -1,4 +1,5 @@
 ﻿using Educational_Api.Models.Enums;
+using Educational_Api.Models.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
