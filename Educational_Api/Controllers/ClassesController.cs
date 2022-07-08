@@ -64,7 +64,8 @@ namespace Educational_Api.Controllers
 				return Problem(result.Response.ToString());
 			}
 
-			return Ok(result.Response.ToString());
+			return new ObjectResult(result.Response.ToString()) 
+				{ StatusCode = StatusCodes.Status201Created };
 		}
 
 		[HttpDelete("{id}")]
