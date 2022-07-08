@@ -1,40 +1,17 @@
-using Educational_Api.Models.Context;
-using Educational_Api.Services;
-using Educational_Api.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
+using Microsoft.AspNetCore;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllers()
-	.AddJsonOptions(x => x.JsonSerializerOptions
-	.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
-builder.Services.AddRouting(options => options.LowercaseUrls = true);
-
-// Services Configuration
-builder.Services.AddDbContext<EducationalContext>(opt => opt.UseInMemoryDatabase("Educational"));
-
-builder.Services.AddScoped<IClassService, ClassService>();
-builder.Services.AddScoped<IStudentService, StudentService>();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+namespace Educational_Api
 {
-	app.UseSwagger();
-	app.UseSwaggerUI();
+	public static class Program
+	{
+		public static void Main(string[] args)
+		{
+			BuildWebHost(args).Run();
+		}
+
+		public static IWebHost BuildWebHost(string[] args) => 
+			WebHost.CreateDefaultBuilder(args)
+				.UseStartup<Startup>()
+				.Build();
+	}
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
