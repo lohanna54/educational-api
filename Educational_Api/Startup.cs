@@ -1,5 +1,4 @@
-﻿using Educational_Api.Models.AppSettings;
-using Educational_Api.Models.Context;
+﻿using Educational_Api.Models.Context;
 using Educational_Api.Services;
 using Educational_Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +11,7 @@ namespace Educational_Api
 
 		#region Private Fields
 
-		private const string SETTINGS_SECTION = "Settings";
+		private const string DATABASE_CONNECTION_NAME = "EducationalDb";
 		
 		#endregion
 
@@ -35,8 +34,6 @@ namespace Educational_Api
 		// This method gets called by the runtime.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			var settings = Configuration.GetSection(SETTINGS_SECTION).Get<ApiSettings>();
-
 			// Controllers configuration
 			services.AddControllers()
 				.AddJsonOptions(x => x.JsonSerializerOptions
@@ -47,7 +44,7 @@ namespace Educational_Api
 			// Services configuration
 			services.AddDbContext<EducationalContext>(opt =>
 				opt.UseLazyLoadingProxies()
-				.UseSqlServer(settings.DatabaseConfiguration.ConnectionString));
+				.UseSqlServer(Configuration.GetConnectionString(DATABASE_CONNECTION_NAME)));
 
 			services.AddScoped<IClassService, ClassService>();
 			services.AddScoped<IStudentService, StudentService>();

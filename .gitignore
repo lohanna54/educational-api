@@ -351,3 +351,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/Educational_Api/Properties/ServiceDependencies/local
+/Educational_Api/Properties/serviceDependencies.local.json
