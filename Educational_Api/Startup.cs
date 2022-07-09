@@ -41,6 +41,9 @@ namespace Educational_Api
 
 			services.AddRouting(options => options.LowercaseUrls = true);
 
+			services.AddEndpointsApiExplorer();
+			services.AddSwaggerGen();
+
 			// Services configuration
 			services.AddDbContext<EducationalContext>(opt =>
 				opt.UseLazyLoadingProxies()
@@ -49,8 +52,6 @@ namespace Educational_Api
 			services.AddScoped<IClassService, ClassService>();
 			services.AddScoped<IStudentService, StudentService>();
 
-			// Swagger
-			services.AddSwaggerGen();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
