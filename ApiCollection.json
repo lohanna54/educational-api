@@ -1,0 +1,737 @@
+{
+	"info": {
+		"_postman_id": "1629a6df-07f9-4258-9e9f-81a08418b10d",
+		"name": "EducationalApi",
+		"description": "This collection provides full access to the 'Educational Api' endpoints, which allow you to create and manage classes and their respective enrolled students.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13895802"
+	},
+	"item": [
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Create Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Marcela Gomes\",\r\n  \"birthDate\": \"2000-09-05T01:12:07.161Z\",\r\n  \"genre\": 1,\r\n  \"classId\": 8,\r\n  \"totalAbsences\": 9,\r\n  \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/students",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Student Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Marcela Gomes\",\r\n  \"birthDate\": \"2000-09-05T01:12:07.161Z\",\r\n  \"genre\": 1,\r\n  \"classId\": 8,\r\n  \"totalAbsences\": 9,\r\n  \"isActive\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/students",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 01:26:03 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "3"
+						}
+					]
+				},
+				{
+					"name": "Get Student By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/students/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Student By Id Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/students/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"students",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 02:08:58 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=137ba244770ef33abaf197220a32d2c5362cff73e903783c6652ce56454a3fd8;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=137ba244770ef33abaf197220a32d2c5362cff73e903783c6652ce56454a3fd8;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"class\": {\n        \"id\": 16,\n        \"name\": \"Sis. Distribuidos\",\n        \"isActive\": true,\n        \"students\": [\n            null\n        ]\n    },\n    \"lazyLoader\": {},\n    \"id\": 1,\n    \"name\": \"José Silva\",\n    \"birthDate\": \"1980-03-01T00:00:00\",\n    \"genre\": 2,\n    \"classId\": 16,\n    \"totalAbsences\": 1,\n    \"isActive\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Student",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"name\": \"Marcela Gomes\",\r\n    \"birthDate\": \"2000-09-05T01:12:07.161Z\",\r\n    \"genre\": 1,\r\n    \"classId\": 8,\r\n    \"totalAbsences\": 9,\r\n    \"isActive\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/students/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"students",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Student Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 3,\r\n    \"name\": \"Marcela Gomes\",\r\n    \"birthDate\": \"2000-09-05T01:12:07.161Z\",\r\n    \"genre\": 1,\r\n    \"classId\": 8,\r\n    \"totalAbsences\": 9,\r\n    \"isActive\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/students/3",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"students",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 01:30:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/students/7",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"students",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Student Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/students/7",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"students",
+										"7"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 01:56:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/students",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Students Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/students",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 01:54:13 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"José Silva\",\n        \"birthDate\": \"1980-03-01T00:00:00\",\n        \"genre\": 2,\n        \"classId\": 16,\n        \"totalAbsences\": 1,\n        \"isActive\": true,\n        \"class\": {\n            \"id\": 16,\n            \"name\": \"Sis. Distribuidos\",\n            \"isActive\": true,\n            \"students\": [\n                null\n            ]\n        }\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Maria Antônia\",\n        \"birthDate\": \"1995-12-09T00:00:00\",\n        \"genre\": 1,\n        \"classId\": 18,\n        \"totalAbsences\": 0,\n        \"isActive\": true,\n        \"class\": {\n            \"id\": 18,\n            \"name\": \"Engenharia de Soft\",\n            \"isActive\": true,\n            \"students\": [\n                null,\n                {\n                    \"id\": 7,\n                    \"name\": \"Abel Joaquim\",\n                    \"birthDate\": \"1999-03-01T00:00:00\",\n                    \"genre\": 2,\n                    \"classId\": 18,\n                    \"totalAbsences\": 0,\n                    \"isActive\": true,\n                    \"class\": null\n                },\n                {\n                    \"id\": 8,\n                    \"name\": \"Otávio Brandão\",\n                    \"birthDate\": \"1998-07-15T00:00:00\",\n                    \"genre\": 2,\n                    \"classId\": 18,\n                    \"totalAbsences\": 7,\n                    \"isActive\": true,\n                    \"class\": null\n                }\n            ]\n        }\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Joana Marques\",\n        \"birthDate\": \"2005-05-01T00:00:00\",\n        \"genre\": 1,\n        \"classId\": 8,\n        \"totalAbsences\": 0,\n        \"isActive\": true,\n        \"class\": {\n            \"id\": 8,\n            \"name\": \"Algoritmos II\",\n            \"isActive\": true,\n            \"students\": [\n                {\n                    \"id\": 3,\n                    \"name\": \"Marcela Gomes\",\n                    \"birthDate\": \"2000-09-05T00:00:00\",\n                    \"genre\": 1,\n                    \"classId\": 8,\n                    \"totalAbsences\": 9,\n                    \"isActive\": false,\n                    \"class\": null\n                },\n                null\n            ]\n        }\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Mariana Souza\",\n        \"birthDate\": \"2001-09-03T00:00:00\",\n        \"genre\": 1,\n        \"classId\": 9,\n        \"totalAbsences\": 2,\n        \"isActive\": true,\n        \"class\": {\n            \"id\": 9,\n            \"name\": \"Banco de Dados I\",\n            \"isActive\": true,\n            \"students\": [\n                null,\n                {\n                    \"id\": 6,\n                    \"name\": \"João Souza\",\n                    \"birthDate\": \"2001-09-03T00:00:00\",\n                    \"genre\": 2,\n                    \"classId\": 9,\n                    \"totalAbsences\": 0,\n                    \"isActive\": false,\n                    \"class\": null\n                }\n            ]\n        }\n    },\n    {\n        \"id\": 7,\n        \"name\": \"Abel Joaquim\",\n        \"birthDate\": \"1999-03-01T00:00:00\",\n        \"genre\": 2,\n        \"classId\": 18,\n        \"totalAbsences\": 0,\n        \"isActive\": true,\n        \"class\": {\n            \"id\": 18,\n            \"name\": \"Engenharia de Soft\",\n            \"isActive\": true,\n            \"students\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Maria Antônia\",\n                    \"birthDate\": \"1995-12-09T00:00:00\",\n                    \"genre\": 1,\n                    \"classId\": 18,\n                    \"totalAbsences\": 0,\n                    \"isActive\": true,\n                    \"class\": null\n                },\n                null,\n                {\n                    \"id\": 8,\n                    \"name\": \"Otávio Brandão\",\n                    \"birthDate\": \"1998-07-15T00:00:00\",\n                    \"genre\": 2,\n                    \"classId\": 18,\n                    \"totalAbsences\": 7,\n                    \"isActive\": true,\n                    \"class\": null\n                }\n            ]\n        }\n    },\n    {\n        \"id\": 8,\n        \"name\": \"Otávio Brandão\",\n        \"birthDate\": \"1998-07-15T00:00:00\",\n        \"genre\": 2,\n        \"classId\": 18,\n        \"totalAbsences\": 7,\n        \"isActive\": true,\n        \"class\": {\n            \"id\": 18,\n            \"name\": \"Engenharia de Soft\",\n            \"isActive\": true,\n            \"students\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Maria Antônia\",\n                    \"birthDate\": \"1995-12-09T00:00:00\",\n                    \"genre\": 1,\n                    \"classId\": 18,\n                    \"totalAbsences\": 0,\n                    \"isActive\": true,\n                    \"class\": null\n                },\n                {\n                    \"id\": 7,\n                    \"name\": \"Abel Joaquim\",\n                    \"birthDate\": \"1999-03-01T00:00:00\",\n                    \"genre\": 2,\n                    \"classId\": 18,\n                    \"totalAbsences\": 0,\n                    \"isActive\": true,\n                    \"class\": null\n                },\n                null\n            ]\n        }\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Classes",
+			"item": [
+				{
+					"name": "Create Class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Engenharia de Soft\",\r\n    \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/classes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"classes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Class Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Engenharia de Soft\",\r\n    \"isActive\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/classes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"classes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 01:03:51 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "18"
+						}
+					]
+				},
+				{
+					"name": "Get Class By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/classes/16",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"classes",
+								"16"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Class By Id Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/classes/16",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"classes",
+										"16"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 02:10:51 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=137ba244770ef33abaf197220a32d2c5362cff73e903783c6652ce56454a3fd8;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=137ba244770ef33abaf197220a32d2c5362cff73e903783c6652ce56454a3fd8;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"students\": [\n        {\n            \"id\": 1,\n            \"name\": \"José Silva\",\n            \"birthDate\": \"1980-03-01T00:00:00\",\n            \"genre\": 2,\n            \"classId\": 16,\n            \"totalAbsences\": 1,\n            \"isActive\": true,\n            \"class\": null\n        }\n    ],\n    \"lazyLoader\": {},\n    \"id\": 16,\n    \"name\": \"Sis. Distribuidos\",\n    \"isActive\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Class",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 18,\r\n    \"name\": \"Eng. de Sistemas\",\r\n    \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/classes/18",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"classes",
+								"18"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Class Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 18,\r\n    \"name\": \"Eng. de Sistemas\",\r\n    \"isActive\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/classes/18",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"classes",
+										"18"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 01:17:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Class",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/classes/7",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"classes",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Class Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/classes/7",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"classes",
+										"7"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 01:20:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=644818c0f7c6fe162cbfe986d6c3c34895ec19cbc74b8c6af9740bc1790bb1fe;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Classes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/classes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"classes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Classes Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/classes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"classes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Jul 2022 02:11:20 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinity=137ba244770ef33abaf197220a32d2c5362cff73e903783c6652ce56454a3fd8;Path=/;HttpOnly;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "ARRAffinitySameSite=137ba244770ef33abaf197220a32d2c5362cff73e903783c6652ce56454a3fd8;Path=/;HttpOnly;SameSite=None;Secure;Domain=educational-api.azurewebsites.net"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 8,\n        \"name\": \"Algoritmos II\",\n        \"isActive\": true,\n        \"students\": [\n            {\n                \"id\": 4,\n                \"name\": \"Joana Marques\",\n                \"birthDate\": \"2005-05-01T00:00:00\",\n                \"genre\": 1,\n                \"classId\": 8,\n                \"totalAbsences\": 0,\n                \"isActive\": true,\n                \"class\": null\n            }\n        ]\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Banco de Dados I\",\n        \"isActive\": true,\n        \"students\": [\n            {\n                \"id\": 5,\n                \"name\": \"Mariana Souza\",\n                \"birthDate\": \"2001-09-03T00:00:00\",\n                \"genre\": 1,\n                \"classId\": 9,\n                \"totalAbsences\": 2,\n                \"isActive\": true,\n                \"class\": null\n            }\n        ]\n    },\n    {\n        \"id\": 10,\n        \"name\": \"Banco de Dados II\",\n        \"isActive\": true,\n        \"students\": []\n    },\n    {\n        \"id\": 16,\n        \"name\": \"Sis. Distribuidos\",\n        \"isActive\": true,\n        \"students\": [\n            {\n                \"id\": 1,\n                \"name\": \"José Silva\",\n                \"birthDate\": \"1980-03-01T00:00:00\",\n                \"genre\": 2,\n                \"classId\": 16,\n                \"totalAbsences\": 1,\n                \"isActive\": true,\n                \"class\": null\n            }\n        ]\n    },\n    {\n        \"id\": 17,\n        \"name\": \"Álgebra Linear\",\n        \"isActive\": true,\n        \"students\": []\n    },\n    {\n        \"id\": 18,\n        \"name\": \"Engenharia de Soft\",\n        \"isActive\": true,\n        \"students\": [\n            {\n                \"id\": 2,\n                \"name\": \"Maria Antônia\",\n                \"birthDate\": \"1995-12-09T00:00:00\",\n                \"genre\": 1,\n                \"classId\": 18,\n                \"totalAbsences\": 0,\n                \"isActive\": true,\n                \"class\": null\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Otávio Brandão\",\n                \"birthDate\": \"1998-07-15T00:00:00\",\n                \"genre\": 2,\n                \"classId\": 18,\n                \"totalAbsences\": 7,\n                \"isActive\": true,\n                \"class\": null\n            }\n        ]\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}
