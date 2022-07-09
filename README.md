@@ -16,4 +16,4 @@ It is the final project that was proposed in the [immersive C# course](https://g
 
 ### Documentation
 
-Postman collection and documentation available in this [page](https://documenter.getpostman.com/view/13895802/UzJPLF3E)
+Postman collection and documentation available in this [page](https://documenter.getpostman.com/view/13895802/UzJPLF3E) and this [file](https://github.com/lohanna54/educational-api/blob/master/ApiCollection.json)
