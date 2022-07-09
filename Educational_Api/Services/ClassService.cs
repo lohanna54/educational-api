@@ -150,10 +150,7 @@ namespace Educational_Api.Services
 				}
 			}
 
-			return new ApiResponse<string>
-			{
-				IsSuccessful = true
-			};
+			return new ApiResponse<string>(true);
 		}
 
 		#endregion

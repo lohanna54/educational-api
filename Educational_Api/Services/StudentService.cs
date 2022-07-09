@@ -87,10 +87,8 @@ namespace Educational_Api.Services
 				}
 			}
 
-			return new ApiResponse<string>
-			{
-				IsSuccessful = true
-			};
+			return new ApiResponse<string>(true);
+			
 		}
 
 		public async Task<ApiResponse<string>> CreateStudent(Student student)

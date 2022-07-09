@@ -51,8 +51,7 @@ namespace Educational_Api.Controllers
 
 			var result = await _studentService.UpdateStudent(id, student);
 
-			return StatusCode((int)result.StatusCode);
-			
+			return result.IsSuccessful ? Ok() : StatusCode((int)result.StatusCode);
 		}
 
 		[HttpPost]

@@ -51,7 +51,7 @@ namespace Educational_Api.Controllers
 
 			var result = await _classService.UpdateClassAsync(id, @class);
 
-			return StatusCode((int)result.StatusCode);
+			return result.IsSuccessful ? Ok() : StatusCode((int)result.StatusCode);
 		}
 
 		[HttpPost]
